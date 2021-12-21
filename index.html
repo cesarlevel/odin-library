@@ -16,19 +16,29 @@
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-        <form>
-            <label for="">Title</label>
-            <input id ="title" required type="text">
-            <label for="">Author</label>
-            <input id ="author" required type="text">
-            <label for="">Number of pages</label>
-            <input id ="number-of-pages" required type="number">
-            <label for="">Have you read it?</label>
-            <input id ="read" type="checkbox">
-            <button>Add Book</button>
-        </form>
+        <section id="add-book-form">
+            <form>
+                <p>
+                    <label for="">Title</label>
+                    <input id ="title" required type="text">
+                </p>
+                <p>
+                    <label for="">Author</label>
+                    <input id ="author" required type="text">
+                </p>
+                <p>
+                    <label for="">Number of pages</label>
+                    <input id ="number-of-pages" required type="number">
+                </p>
+                <p>
+                    <label for="">Have you read it?</label>
+                    <input id ="read" type="checkbox">
+                </p>
+                <button>Add Book</button>
+            </form>
+        </section>
         <section id="library">
-            <ul></ul>
+            <div id="shelf"></div>
         </section>
         <script src="./library.js" async defer></script>
     </body>

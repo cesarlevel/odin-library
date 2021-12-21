@@ -1,28 +1,3 @@
-class Library {
-    constructor(collection = []) {
-        this.collection = collection;
-        this.init();
-    }
-
-    addBook(book) {
-        if (book instanceof Book) {
-            this.collection.push(book);
-        }
-    }
-
-    deleteBook(bookIndex) {
-        this.collection.splice(bookIndex, 1);
-    }
-
-    markBookAsRead(bookIndex) {
-        this.collection[bookIndex]?.markAsRead();
-    }
-
-    init() {
-        this.addBook(new Book('The hobbit', 'HR Tolkien', '234', true))
-    }
-}
-
 class Book {
     constructor(title, author, numberOfPages, read = false) {
         this.title = title;
@@ -31,8 +6,8 @@ class Book {
         this.read = read;
     }
 
-    markAsRead() {
-        this.read = true;
+    changeReadStatus() {
+        this.read = !this.read;
     }
 
     get isRead() {
@@ -40,33 +15,55 @@ class Book {
     }
 }
 
+const formContiner = document.querySelector('#add-book-form');
 const addBookForm =  document.querySelector('form');
+
+let library = [new Book('hobbit wqeqwe  qweqweqweqwe', 'HR Tolkien', '234', true), new Book('hobbit', 'HR Tolkien', '234', true), new Book('hobbit', 'HR Tolkien', '234', true), new Book('hobbit', 'HR Tolkien', '234', true), new Book('hobbit', 'HR Tolkien', '234', true), new Book('hobbit', 'HR Tolkien', '234', true)];
+
 
 addBookForm.onsubmit = function(e) {
     e.preventDefault();
-    const title = e.target.querySelector('#title')
-    const book = new Book(title.value)
-    library.addBook(book)
-    renderCollection(library.collection);
-    console.log(title.value)
+    const {value: titleValue} = e.target.querySelector('#title');
+    const {value: authorValue} = e.target.querySelector('#author');
+    const {value: numberOfPagesValue} = e.target.querySelector('#number-of-pages');
+    const {checked: readValue} = e.target.querySelector('#read');
+    const newBook = new Book(titleValue, authorValue, numberOfPagesValue, readValue);
+    if (library.some(({title}) => title === titleValue)) {
+        console.log('gotcha')
+    } else {
+        library.push(newBook);
+        renderCollection(library.collection);
+    }
 }
 
 function renderCollection(collection) {
-    const shelf = document.querySelector('#library ul');
+    const shelf = document.querySelector('#library #shelf');
     shelf.innerHTML = '';
-    collection.forEach((book, i) => {
+    library.forEach((book, i) => {
         shelf.insertAdjacentHTML('beforeend', `
-            <li>${book.title}, ${book.isRead} <div onclick="test(${i})">Delete</div></li>
+            <div class="book" title="${book.title}">
+                ${book.title}, ${book.isRead}
+                <small>${book.author}</small>
+                <div onclick="test(${i})">Delete</div>
+            </div>
         `);
     });
+    shelf.insertAdjacentHTML('beforeend', `<div class="book is-new" onclick="showForm()">+</div>`)
+}
+
+function showForm() {
+    formContiner.classList.add('is-visible');
+    document.body.classList.add('no-scroll');
+}
+
+function deleteBook(bookIndex) {
+    library.splice(bookIndex, 1);
 }
 
 function test(index) {
-    console.log(index)
-    library.markBookAsRead(index);
+    library[index].changeReadStatus(index);
     renderCollection(library.collection);
 }
-const library = new Library();
-library.markBookAsRead(6);
-renderCollection(library.collection)
+
+renderCollection(library)
 console.log(library)

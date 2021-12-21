@@ -1,0 +1,135 @@
+:root {
+    --main-bg-color: #f0f1f3;
+    --font-size: calc(16px + (18 - 14) * ((100vw - 300px) / (1600 - 300)));
+    --form-element-padding: 12px;
+    --text-color: #0d2b3e;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+* {
+    font-size: var(--font-size);
+    font-family: Georgia, serif;
+}
+
+.no-scroll {
+    overflow-y: hidden;
+}
+
+body {
+    height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: left;
+    background-color: var(--main-bg-color);
+    color: var(--text-color);
+    font-family: Georgia, serif;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    justify-content: center;
+    align-items: center;
+}
+
+#add-book-form {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #0d2b3ed8;
+    display: none;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px;
+    overflow: auto;
+    z-index: 100;
+}
+
+#add-book-form.is-visible {
+    display: flex;
+}
+
+form {
+    display: block;
+    width: 40%;
+    padding: 40px;
+    background: #ffffff;
+    box-sizing: border-box;
+    position: absolute;
+
+}
+
+form p:first-child { margin-top: 0; }
+
+form label {
+    display: block;
+    font-size: 80%;
+    margin-bottom: 4px;
+}
+
+form input {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid var(--text-color);
+    padding: var(--form-element-padding);
+}
+
+form button {
+    display: block;
+    width: 100%;
+    cursor: pointer;
+    background: var(--text-color);
+    color: #ffffff;
+    border: none;
+    padding: calc(var(--form-element-padding) + 4px);
+    font-weight: bold;
+}
+
+#shelf {
+    padding: 50px;
+    margin: 0 auto;
+    max-width: 800px;
+    display: grid;
+    grid-auto-flow: row;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    grid-gap: 20px;
+}
+
+.book {
+    min-height: 200px;
+    border: 2px solid var(--text-color);
+    font-weight: bold;
+    background: #ffffff;
+    overflow: hidden;
+    box-sizing: border-box;
+    text-overflow: ellipsis;
+    padding: calc(var(--form-element-padding) + 2px);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    box-shadow: 0px 3px 6px -2px rgba(50, 50, 93, 0.3), 0px 3px 7px -3px rgba(0, 0, 0, 0.3), inset 0px 0px 0px 2px #ffffff, inset 0px 0px 0px 3px var(--text-color);
+}
+
+.book:hover {
+    transform: translateY(-6px);
+    box-shadow: 0px 20px 24px -6px rgba(50, 50, 93, 0.20), 0px 6px 14px -3px rgba(0, 0, 0, 0.2), inset 0px 0px 0px 2px #ffffff, inset 0px 0px 0px 3px var(--text-color);
+}
+
+.book small {
+    font-family: "Helvetica Neue";
+    margin-top: 4px;
+    font-weight: normal;
+    display: block;
+    font-size: 60%;
+}
+
+.book.is-new {
+    box-shadow: none;
+    background: #e1e4e9;
+    border: none;
+    cursor: pointer;
+}
+
+.book:hover.is-new {
+    transform: translateY(0);
+}
