@@ -11,13 +11,16 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="./style.css">
+        <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     </head>
     <body>
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
+        <h1><i class="uil uil-book-open"></i> The Library</h1>
         <section id="add-book-form">
             <form>
+                <p class="error-message"></p>
                 <p>
                     <label for="">Title</label>
                     <input id ="title" required type="text">
@@ -30,11 +33,12 @@
                     <label for="">Number of pages</label>
                     <input id ="number-of-pages" required type="number">
                 </p>
-                <p>
-                    <label for="">Have you read it?</label>
-                    <input id ="read" type="checkbox">
+                <p class="is-checkbox">
+                    <input class="is-checkbox" id ="read" type="checkbox">
+                    <label class="is-checkbox" for="read">&nbsp;&nbsp;Have you read it?</label>
                 </p>
                 <button>Add Book</button>
+                <button class="is-secondary">Cancel</button>
             </form>
         </section>
         <section id="library">
