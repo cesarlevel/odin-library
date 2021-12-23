@@ -10,6 +10,7 @@ html, body {
     padding: 0;
     font-size: var(--font-size);
     font-family: Georgia, serif;
+    height: 100%;
 }
 
 h1 {
@@ -27,7 +28,6 @@ h1, h1 i {
 }
 
 body {
-    height: 100%;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: left;
@@ -40,7 +40,7 @@ body {
 }
 
 #add-book-form {
-    position: absolute;
+    position: fixed;
     top: 0;
     bottom: 0;
     left: 0;
@@ -49,7 +49,7 @@ body {
     display: none;
     justify-content: center;
     align-items: flex-start;
-    padding: 40px;
+    padding: 0 40px;
     overflow: auto;
     z-index: 100;
 }
@@ -60,7 +60,8 @@ body {
 
 form {
     display: block;
-    width: 40%;
+    width: 100%;
+    max-width: 600px;
     padding: 40px;
     background: #ffffff;
     box-sizing: border-box;
@@ -70,6 +71,7 @@ form {
 
 form p.is-checkbox {
     display: flex;
+    align-items: center;
 }
 
 form p:first-child { margin-top: 0; }
@@ -85,6 +87,7 @@ form label {
 form label.is-checkbox {
     cursor: pointer;
     display: inline-block;
+    margin-bottom: 0;
 }
 
 form input {
